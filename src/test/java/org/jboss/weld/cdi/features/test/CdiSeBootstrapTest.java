@@ -23,6 +23,7 @@ import org.jboss.weld.cdi.features.seBootstrap.BeanA;
 import org.jboss.weld.cdi.features.seBootstrap.NotABean;
 import org.jboss.weld.cdi.features.seBootstrap.subpackage.BeanB;
 import org.jboss.weld.cdi.features.seBootstrap.subpackage.SomeInterceptor;
+import org.jboss.weld.cdi.features.seBootstrap.subpackage.anotherPackage.BeanC;
 import org.jboss.weld.cdi.features.seBootstrap.subpackage.anotherPackage.TotallyCoolExtension;
 import org.junit.Assert;
 import org.junit.Test;
@@ -76,6 +77,8 @@ public class CdiSeBootstrapTest {
         try (SeContainer container = initializer.initialize()) {
             // verify we have the extension in place
             Assert.assertEquals(5, container.select(TotallyCoolExtension.class).get().getAllCaught().size());
+
+            container.select(BeanC.class).get().ping();
 
             // verify that interceptor works as expected
             Assert.assertEquals(true, SomeInterceptor.invoked.get());
