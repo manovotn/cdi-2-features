@@ -38,18 +38,18 @@ public class EventDispatcher {
 
     @Inject
     @Asynchronous
-    Event<Object> secondaryEvent;
+    Event<Object> secondEvent;
 
     public void fireSync() {
         firstEvent.fire(new EventPayload());
     }
 
-    public CompletionStage<EventPayload> fireAsync(EventPayload payload) throws InterruptedException {
-        return secondaryEvent.fireAsync(payload);
+    public CompletionStage<EventPayload> fireAsync(EventPayload payload) {
+        return secondEvent.fireAsync(payload);
     }
 
     public CompletionStage<EventPayload> fireAsyncWithOptions(EventPayload payload) {
         NotificationOptions no = NotificationOptions.ofExecutor(new CustomExecutor());
-        return secondaryEvent.fireAsync(payload, no);
+        return secondEvent.fireAsync(payload, no);
     }
 }

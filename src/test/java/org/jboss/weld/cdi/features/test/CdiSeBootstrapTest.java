@@ -78,6 +78,7 @@ public class CdiSeBootstrapTest {
             // verify we have the extension in place
             Assert.assertEquals(5, container.select(TotallyCoolExtension.class).get().getAllCaught().size());
 
+            // SeContainer extends Instance - we can leverage that to easily select beans
             container.select(BeanC.class).get().ping();
 
             // verify that interceptor works as expected

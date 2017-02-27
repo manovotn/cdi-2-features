@@ -40,6 +40,5 @@ public class TotallyCoolExtension implements Extension {
         if (patClass.getPackage().getName().contains("cdi.feature")) {
             allCaught.add(patClass.getSimpleName());
         }
-        System.out.println(patClass.getSimpleName());
     }
 }
